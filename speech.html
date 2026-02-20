@@ -5,26 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Button</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
 <main>
-    <div class="roland m-1"><img src="angelica.jpeg"></div>
-    <div>
-        <button onclick="PlaySound('speech')">Roland speech</button>
+    <div id="flash-container" class="roland m-1">
+        <img id="mainImage" src="angelica.jpeg" alt="angelica">
     </div>
+
     <div>
-            <a href="index.html">
-                <button>go back to loland here</button>
-            </a>
-        </div>
-    <script>
-        function PlaySound(melody) {
-            alert("Playing: " + melody);
-            var snd = new Audio(melody + ".mpeg"); 
-            snd.play();
-        }
-    </script>
+        <button onclick="PlaySpeech()">Roland speech</button>
+    </div>
+
+    <div>
+        <a href="index.html">
+            <button>go back to loland here</button>
+        </a>
+    </div>
+
+<script>
+    function PlaySpeech() {
+        const firstSound = new Audio("speech.mpeg");
+        const secondSound = new Audio("fah.mp3");
+
+        secondSound.preload = "auto"; 
+
+        firstSound.play();
+
+        firstSound.addEventListener("ended", () => {
+            secondSound.play();
+        });
+    }
+</script>
 </main>
 </body>
 </html>
